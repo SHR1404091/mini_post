@@ -42,9 +42,10 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-danger" href="#">
-                            ⛔ Cerrar sesión
-                        </a>
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit">Cerrar Sesión</button>
+                        </form>
                     </li>
                 </ul>
             </div>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,14 +14,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Ruta login
 Route::get('/', function () {
     return view('login');
-});
+})->name('login');
 
+// Procesar login
+Route::post('/login', [AuthController::class, 'login'])->name('login.post');
+
+// Ruta dashboard protegida
 Route::get('/dashboard', function () {
     return view('dashboard');
-});
+})->middleware('auth')->name('dashboard');
 
+// Logout
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/inventario', function () {
     return view('inventario');
 });
